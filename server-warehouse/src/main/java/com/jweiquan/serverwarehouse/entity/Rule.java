@@ -1,19 +1,18 @@
 package com.jweiquan.serverwarehouse.entity;
 
-import com.jweiquan.serverwarehouse.common.BaseSaasEntity;
-import lombok.Getter;
-import lombok.Setter;
 import reactor.util.function.Tuple2;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.sql.Date;
 
-@Getter
-@Setter
+@Entity
 @Table(name = "rule")
-public class Rule extends BaseSaasEntity {
+public class Rule {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -84,4 +83,16 @@ public class Rule extends BaseSaasEntity {
 
     @Column(name = "brand_id")
     private Integer brandId;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "brand_user_id")
+    private Integer brandUserId;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }

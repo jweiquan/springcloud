@@ -51,35 +51,14 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Spring Boot mybatis 依赖 (包含了 jdbc、tomcat-jdbc 连接池、mybatis 等各种所需的依赖) -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- MySQL JDBC Type 4 driver -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--common mapper （包含了mybatis-spring-boot-starter依赖）-->
         <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>1.1.4</version>
-        </dependency>
-        <!--pagehelper 通用mapper分页插件-->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.10</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>

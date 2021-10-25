@@ -1,15 +1,16 @@
 package com.jweiquan.serverwarehouse.entity;
 
-import com.jweiquan.serverwarehouse.common.BaseSaasEntity;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
+import java.sql.Date;
 
-@Getter
-@Setter
+@Entity
 @Table(name = "job")
-public class Job extends BaseSaasEntity {
+public class Job {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "job_no")
     private String jobNo;
 
@@ -19,8 +20,8 @@ public class Job extends BaseSaasEntity {
     @Column(name = "warehouse_id")
     private Integer warehouseId;
 
-    @Column(name = "rule_snapshot")
-    private Object ruleSnapshot;
+//    @Column(name = "rule_snapshot")
+//    private Object ruleSnapshot;
 
     @Column(name = "status")
     private Integer status;
@@ -39,4 +40,19 @@ public class Job extends BaseSaasEntity {
 
     @Column(name = "is_shipped")
     private Integer isShipped;
+
+    @Column(name = "brand_id")
+    private Integer brandId;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "brand_user_id")
+    private Integer brandUserId;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }
