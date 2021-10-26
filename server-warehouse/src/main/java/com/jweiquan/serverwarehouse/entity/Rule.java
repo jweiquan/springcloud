@@ -1,16 +1,24 @@
 package com.jweiquan.serverwarehouse.entity;
 
-import reactor.util.function.Tuple2;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
-@Table(name = "rule")
+@Getter
+@Setter
+@Entity(name = "rule")
+@TypeDef(name = "json", typeClass = JsonType.class)
 public class Rule {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Integer id;
 
     @Column(name = "name", nullable = false)
@@ -22,28 +30,28 @@ public class Rule {
     @Column(name = "warehouse_id", nullable = false)
     private Integer warehouseId;
 
-    @Transient
-    @Column(name = "client_ids")
+    @Type(type = "json")
+    @Column(name = "client_ids", columnDefinition = "json")
     private Integer[] clientIds;
 
-    @Transient
-    @Column(name = "store_ids")
+    @Type(type = "json")
+    @Column(name = "store_ids", columnDefinition = "json")
     private Integer[] storeIds;
 
-    @Transient
-    @Column(name = "carriers")
+    @Type(type = "json")
+    @Column(name = "carriers", columnDefinition = "json")
     private String[] carriers;
 
-    @Transient
-    @Column(name = "service_codes")
+    @Type(type = "json")
+    @Column(name = "service_codes", columnDefinition = "json")
     private String[] serviceCodes;
 
-    @Transient
-    @Column(name = "accounts")
+    @Type(type = "json")
+    @Column(name = "accounts", columnDefinition = "json")
     private String[] accounts;
 
-    @Transient
-    @Column(name = "ship_to_country_codes")
+    @Type(type = "json")
+    @Column(name = "ship_to_country_codes", columnDefinition = "json")
     private String[] shipToCountryCodes;
 
     @Column(name = "max_product_qty")
@@ -52,34 +60,34 @@ public class Rule {
     @Column(name = "max_product_category")
     private Integer maxProductCategory;
 
-    @Transient
-    @Column(name = "sku")
+    @Type(type = "json")
+    @Column(name = "sku", columnDefinition = "json")
     private String[] sku;
 
-    @Transient
-    @Column(name = "ship_by_range")
-    private Tuple2<Date, Date> shipByRange;
+    @Type(type = "json")
+    @Column(name = "ship_by_range", columnDefinition = "json")
+    private String[] shipByRange;
 
-    @Transient
-    @Column(name = "order_created_at")
-    private Tuple2<Date, Date> orderCreatedAt;
+    @Type(type = "json")
+    @Column(name = "order_created_at", columnDefinition = "json")
+    private String[] orderCreatedAt;
 
-    @Transient
-    @Column(name = "platform_ids")
+    @Type(type = "json")
+    @Column(name = "platform_ids", columnDefinition = "json")
     private Integer[] platformIds;
 
     @Column(name = "max_order_qty")
     private Integer maxOrderQty;
 
-    @Transient
-    @Column(name = "optional_conditions")
+    @Type(type = "json")
+    @Column(name = "optional_conditions", columnDefinition = "json")
     private String[] optionalConditions;
 
     @Column(name = "job_priority")
     private Integer jobPriority;
 
     @Column(name = "active")
-    private Integer active;
+    private Byte active;
 
     @Column(name = "brand_id")
     private Integer brandId;

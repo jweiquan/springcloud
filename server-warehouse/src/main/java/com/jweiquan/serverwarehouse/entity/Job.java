@@ -1,10 +1,17 @@
 package com.jweiquan.serverwarehouse.entity;
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import lombok.Getter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
 import javax.persistence.*;
 import java.sql.Date;
 
+@Getter
 @Entity
 @Table(name = "job")
+@TypeDef(name = "json", typeClass = JsonType.class)
 public class Job {
     @Id
     @Column(name = "id")
@@ -20,26 +27,27 @@ public class Job {
     @Column(name = "warehouse_id")
     private Integer warehouseId;
 
-//    @Column(name = "rule_snapshot")
-//    private Object ruleSnapshot;
+    @Type(type = "json")
+    @Column(name = "rule_snapshot", columnDefinition = "json")
+    private Object ruleSnapshot;
 
     @Column(name = "status")
-    private Integer status;
+    private Byte status;
 
     @Column(name = "is_job_label_printed")
-    private Integer isJobLabelPrinted;
+    private Byte isJobLabelPrinted;
 
     @Column(name = "is_picked")
-    private Integer isPicked;
+    private Byte isPicked;
 
     @Column(name = "is_shipment_label_printed")
-    private Integer isShipmentLabelPrinted;
+    private Byte isShipmentLabelPrinted;
 
     @Column(name = "is_packed")
-    private Integer isPacked;
+    private Byte isPacked;
 
     @Column(name = "is_shipped")
-    private Integer isShipped;
+    private Byte isShipped;
 
     @Column(name = "brand_id")
     private Integer brandId;
