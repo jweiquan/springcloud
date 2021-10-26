@@ -9,7 +9,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RuleService {
@@ -35,10 +35,7 @@ public class RuleService {
      * 创建快照
      */
     public RuleSnapshot createRuleSnapshot(@NonNull Rule rule, @NonNull User user) {
-        RuleSnapshot ruleSnapshot = new RuleSnapshot();
-        ruleSnapshot.setId(rule.getId());
-        ruleSnapshot.setName(rule.getName());
-        ruleSnapshot.setJobPriority(rule.getJobPriority());
+        RuleSnapshot ruleSnapshot = RuleSnapshot.createBaseFromEntity(rule);
         if (rule.getClientIds() != null) {
             ruleSnapshot.setClients(
                     this.brandUserService.getClientMapByBrandUserIds(
@@ -51,9 +48,6 @@ public class RuleService {
                     this.warehouseService.getWarehouseByWarehouseId(rule.getWarehouseId(), user)
             );
         }
-        ruleSnapshot.setIsMultiple(rule.getIsMultiple());
-        ruleSnapshot.setCarriers(rule.getCarriers());
-        ruleSnapshot.setServiceCodes(rule.getServiceCodes());
         if (rule.getAccounts() != null && rule.getServiceCodes() != null) {
             ruleSnapshot.setServiceCodes(rule.getServiceCodes());
             ruleSnapshot.setServices(
@@ -63,7 +57,6 @@ public class RuleService {
                     ).values().toArray(new RuleSnapshot.Service[0])
             );
         }
-        ruleSnapshot.setAccounts(rule.getAccounts());
         if (rule.getPlatformIds() != null) {
             ruleSnapshot.setPlatforms(
                 this.platformService.getPlatformMapByIds(rule.getPlatformIds(), user).values().toArray(
@@ -78,11 +71,6 @@ public class RuleService {
                 )
             );
         }
-        ruleSnapshot.setShipBy(rule.getShipByRange());
-        ruleSnapshot.setSku(rule.getSku());
-        ruleSnapshot.setMaxOrderQty(rule.getMaxOrderQty());
-        ruleSnapshot.setMaxProductQty(rule.getMaxProductQty());
-        ruleSnapshot.setMaxProductCategory(rule.getMaxProductCategory());
         if (rule.getShipToCountryCodes() != null) {
             ruleSnapshot.setCountries(
                 this.carrierService.getCountryMapByCodes(rule.getShipToCountryCodes()).values().toArray(
@@ -90,9 +78,29 @@ public class RuleService {
                 )
             );
         }
-        ruleSnapshot.setOrderCreatedAt(rule.getOrderCreatedAt());
-        ruleSnapshot.setOptionalConditions(rule.getOptionalConditions());
         return ruleSnapshot;
+    }
+
+    /**
+     *
+     * @param rules List<Rule>
+     * @param user User
+     * @return Map<Integer, RuleSnapshot>
+     */
+    public Map<Integer, RuleSnapshot> getRuleSnapshotMapFromRuleList(
+            List<Rule> rules,
+            @NonNull User user
+    ) {
+        Set<Integer> allClientIds = new HashSet<>();
+        Set<Integer> allWarehouseIds = new HashSet<>();
+        Set<String> allServiceCodes = new HashSet<>();
+        Set<Integer> allPlatformIds = new HashSet<>();
+        Set<Integer> allStoreIds = new HashSet<>();
+        Set<String> allCountryCodes = new HashSet<>();
+
+        rules.forEach(rule -> {
+
+        });
     }
 
     /**

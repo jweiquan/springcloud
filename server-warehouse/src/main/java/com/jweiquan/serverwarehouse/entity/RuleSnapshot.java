@@ -1,6 +1,7 @@
 package com.jweiquan.serverwarehouse.entity;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
@@ -75,5 +76,24 @@ public class RuleSnapshot {
     public static class Country {
         private String code;
         private String name;
+    }
+
+    public static RuleSnapshot createBaseFromEntity(@NonNull Rule rule) {
+        RuleSnapshot ruleSnapshot = new RuleSnapshot();
+        ruleSnapshot.setId(rule.getId());
+        ruleSnapshot.setName(rule.getName());
+        ruleSnapshot.setJobPriority(rule.getJobPriority());
+        ruleSnapshot.setIsMultiple(rule.getIsMultiple());
+        ruleSnapshot.setCarriers(rule.getCarriers());
+        ruleSnapshot.setServiceCodes(rule.getServiceCodes());
+        ruleSnapshot.setAccounts(rule.getAccounts());
+        ruleSnapshot.setShipBy(rule.getShipByRange());
+        ruleSnapshot.setSku(rule.getSku());
+        ruleSnapshot.setMaxOrderQty(rule.getMaxOrderQty());
+        ruleSnapshot.setMaxProductQty(rule.getMaxProductQty());
+        ruleSnapshot.setMaxProductCategory(rule.getMaxProductCategory());
+        ruleSnapshot.setOrderCreatedAt(rule.getOrderCreatedAt());
+        ruleSnapshot.setOptionalConditions(rule.getOptionalConditions());
+        return ruleSnapshot;
     }
 }
