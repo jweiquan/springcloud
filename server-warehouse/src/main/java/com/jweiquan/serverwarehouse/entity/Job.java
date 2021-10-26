@@ -4,6 +4,7 @@ import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.Getter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import reactor.util.annotation.Nullable;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -29,7 +30,8 @@ public class Job {
 
     @Type(type = "json")
     @Column(name = "rule_snapshot", columnDefinition = "json")
-    private Object ruleSnapshot;
+    @Nullable
+    private RuleSnapshot ruleSnapshot;
 
     @Column(name = "status")
     private Byte status;
