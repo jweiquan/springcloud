@@ -25,7 +25,7 @@ public class Rule {
     private String name;
 
     @Column(name = "is_multiple", nullable = false)
-    private Integer isMultiple;
+    private Byte isMultiple;
 
     @Column(name = "warehouse_id", nullable = false)
     private Integer warehouseId;
