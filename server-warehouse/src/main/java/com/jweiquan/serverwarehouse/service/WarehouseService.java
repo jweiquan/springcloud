@@ -5,10 +5,11 @@ import com.jweiquan.serverwarehouse.entity.RuleSnapshot;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Set;
 
 @Service
 public class WarehouseService {
-    public HashMap<Integer, RuleSnapshot.Warehouse> getWarehouseIdWarehouseMap(Integer[] id, User user) {
+    public HashMap<Integer, RuleSnapshot.Warehouse> getWarehouseIdWarehouseMap(Set<Integer> id, User user) {
         HashMap<Integer, RuleSnapshot.Warehouse> map = new HashMap<>();
 
         // TODO
